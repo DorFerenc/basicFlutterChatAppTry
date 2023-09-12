@@ -30,10 +30,12 @@ class App extends StatelessWidget {
       home: StreamBuilder(
           stream: FirebaseAuth.instance.authStateChanges(),
           builder: (ctx, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) { // waiting for connection with firebase show loading screen
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              // waiting for connection with firebase show loading screen
               return const SplashScreen();
             }
-            if (snapshot.hasData) { // found real connection show chat screen
+            if (snapshot.hasData) {
+              // found real connection show chat screen
               return const ChatScreen();
             }
             return const AuthScreen(); // no token show auth screen for signup or log in
