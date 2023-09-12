@@ -1,4 +1,5 @@
 import 'package:chat_app_try/screens/chat.dart';
+import 'package:chat_app_try/screens/splash.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -29,11 +30,13 @@ class App extends StatelessWidget {
       home: StreamBuilder(
           stream: FirebaseAuth.instance.authStateChanges(),
           builder: (ctx, snapshot) {
-            if (snapshot.hasData) {
+            if (snapshot.connectionState == ConnectionState.waiting) { // waiting for connection with firebase show loading screen
+              return const SplashScreen();
+            }
+            if (snapshot.hasData) { // found real connection show chat screen
               return const ChatScreen();
             }
-
-            return const AuthScreen();
+            return const AuthScreen(); // no token show auth screen for signup or log in
           }),
     );
   }
