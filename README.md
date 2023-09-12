@@ -5,6 +5,9 @@ A new Flutter project.
 ## In firebase
 1) enable login with email and password
 2) enable storage
+3) enable fire store database
+
+change rules from `false` to `request.auth != null` and click `publish`
 
 ### Step 1: Install the required command line tools
 
