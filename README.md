@@ -3,7 +3,7 @@
 A new Flutter project.
 
 ## In firebase
-1) enable login with email and passward
+1) enable login with email and password
 2) enable storage
 
 ### Step 1: Install the required command line tools

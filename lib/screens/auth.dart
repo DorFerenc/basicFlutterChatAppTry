@@ -1,3 +1,4 @@
+import 'package:chat_app_try/widgets/user_image_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -35,7 +36,7 @@ class _AuthScreenState extends State<AuthScreen> {
         final userCredentials = await _firebase.signInWithEmailAndPassword(
             email: _enteredEmail, password: _enteredPassword);
       } else {
-        // singup users
+        // signup users
         final userCredentials = await _firebase.createUserWithEmailAndPassword(
             email: _enteredEmail, password: _enteredPassword);
       }
@@ -74,6 +75,8 @@ class _AuthScreenState extends State<AuthScreen> {
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
+                      //if in signup then open image picker widget
+                      if (!_isLogin) UserImagePicker(),
                       TextFormField(
                         decoration:
                             const InputDecoration(labelText: 'Email Address'),
