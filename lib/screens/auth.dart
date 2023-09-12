@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:chat_app_try/widgets/user_image_picker.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -56,10 +57,17 @@ class _AuthScreenState extends State<AuthScreen> {
             .child('${userCredentials.user!.uid}.jpg');
 
         await storageRef.putFile(_selectedImage!);
-        final imageUrl = await storageRef.getDownloadURL(); // get image url using firebase
+        final imageUrl =
+            await storageRef.getDownloadURL(); // get image url using firebase
 
-
-
+        await FirebaseFirestore.instance
+            .collection('users')
+            .doc(userCredentials.user!.uid)
+            .set({
+          'username': 'to be done ...',
+          'email': _enteredEmail,
+          'image_url': imageUrl
+        });
       }
     } on FirebaseAuthException catch (error) {
       if (error.code == 'email-already-in-use') {
@@ -137,8 +145,7 @@ class _AuthScreenState extends State<AuthScreen> {
                         },
                       ),
                       const SizedBox(height: 12),
-                      if (_isAuthenticating)
-                        const CircularProgressIndicator(),
+                      if (_isAuthenticating) const CircularProgressIndicator(),
                       if (!_isAuthenticating) // not logging in
                         ElevatedButton(
                             onPressed: _submit,

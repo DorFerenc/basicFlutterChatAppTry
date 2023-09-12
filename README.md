@@ -6,6 +6,11 @@ A new Flutter project.
 1) enable login with email and password
 2) enable storage
 3) enable fire store database
+4) Android -> app -> build.gradel -> android : ``` minSdkVersion 19
+   targetSdkVersion flutter.targetSdkVersion
+   versionCode flutterVersionCode.toInteger()
+   versionName flutterVersionName
+   multiDexEnabled true```
 
 change rules from `false` to `request.auth != null` and click `publish`
 
@@ -34,5 +39,6 @@ change rules from `false` to `request.auth != null` and click `publish`
 ### Step 4: Add Firebase plugins relevant to project
 1) ```flutter pub add firebase_storage```
 2) ``` flutter pub add image_picker```
+3) ```flutter pub add cloud_firestore```
 
 
