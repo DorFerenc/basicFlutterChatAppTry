@@ -11,6 +11,8 @@ A new Flutter project.
    versionCode flutterVersionCode.toInteger()
    versionName flutterVersionName
    multiDexEnabled true```
+5) enable firebase → Messaging → 
+6) IOS (Xcode) [setup](https://firebase.google.com/docs/cloud-messaging/flutter/client)
 
 change rules from `false` to `request.auth != null` and click `publish`
 
